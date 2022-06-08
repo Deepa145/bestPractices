@@ -110,25 +110,27 @@ Q15. How to create object for classes with private constructors ?
 Q16. What is de-coupling ?
 	decoupling allows the separation of object interaction from classes and inheritance into distinct 
 	layers of abstraction used to polymorphic-ally decouple the encapsulation which is the practice of using re-usable 
-	code to prevent discrete code modules from interacting with each other.
+	code to prevent discrete code modules from interacting with each other.(refer-decoupled Car.java,Iengine.java,Iwheel.java)
 	
-Q17. What is cohesiveness between objects ?
-	cohesiveness refers to the degree to which the elements inside a module belong together. 
+Q17. What is cohesiveness between objects ?(Cohesiveness - The ability to being friendly)
+	-cohesiveness refers to the degree to which the elements inside a module belong together. 
 	In one sense, it is a measure of the strength of relationship between the methods and data of a class and some 
 	unifying purpose or concept served by that class.
+	-Cohesion denotes the level of intra-dependency amongst the elements of a software module. 
+	In other words, Cohesion is a measure of the degree to which the responsibilities of a single module or
+	a component form a meaningful unit.
+	-In decouple Car.java the car is cohesive with different type of engines, and wheels.
+	-Car objects can work with any type of engine, and any type of wheel.
+	- The car is not dependent on a particular engine or wheel.
 	
 Q18. Explain "has-a" and "is-a" relationship between objects with examples ?
-	Is-A Relationship in Java
-		In Java, an Is-A relationship depends on inheritance. Further inheritance is of two types, class inheritance and interface inheritance. 
-		It is used for code reusability in Java. For example, a Potato is a vegetable, a Bus is a vehicle, a Bulb is an electronic device and so on.
-		One of the properties of inheritance is that inheritance is unidirectional in nature. Like we can say that a house is a building.
-		But not all buildings are houses. We can easily determine an Is-A relationship in Java.
-		When there is an extends or implement keyword in the class declaration in Java, then the specific class is said to be following the Is-A relationship.
-	Has-A Relationship in Java
-		In Java, a Has-A relationship is also known as composition. It is also used for code reusability in Java. 
-		In Java, a Has-A relationship simply means that an instance of one class has a reference to an instance of another class or an other
-		instance of the same class. For example, a car has an engine, a dog has a tail and so on. In Java, there is no such keyword that implements 
-		a Has-A relationship. But we mostly use new keywords to implement a Has-A relationship in Java.
+	-Car has-a Engine:
+		Car and Engine are two different classes
+		Objects of type Engine are members of class car
+		Car class uses engine object for its requirements.
+		Engine is a part of car
+	-Car is-a Vehicle:
+		Vehicle is a parent class. 
 
 Q19. What do you mean by Single responsibilities Principle ?
 	The single-responsibility principle (SRP) is a computer-programming principle that states that every module,
