@@ -1,0 +1,141 @@
+Q1. What is an interface ?
+	The interface in Java is a mechanism to achieve abstraction.
+	An interface in Java is a contract of a class.
+	It may have static,constants, abstract methods, and default methods 
+	It is also used for multiple implementation in Java (java does not support multiple inheritance)
+	Interfaces are also used as marker interface.
+
+Q2. Why interfaces are called as contract ?
+	Interfaces are contracts between implementers and consumers.
+	Consumers: Programmers using a class that is implementing a interface.
+	The interface specifies the signature of methods,
+		1. But not the semantics
+		2. Missing : Class invariants, pre and post conditions , etc.,
+		Example : LayeredLibrary, IRepository,Producer-consumer,IBuffer
+		3. The interface IRepository defines an contract between the upper layers (GUI etc.,)
+		and the lower layers (data access layer like database,file,etc.,) in the application.
+		
+		A contract is a promise 
+		A class that implements an interface makes a promise, that it will realize(overriding) the abstract methods of the interface.
+		The user of a class, to know the list of services provided by objects of the class, can check all the
+		interfaces implemented by the class.
+
+Q3. What are null interfaces ?
+	It is an empty interface (no field or methods).
+	Examples of null interface are java.io.Serializable, java.lang.Cloneable and java.rmi.Remote interface.
+
+Q4. What are marker interface ?
+	Marker interfaces are very special interfaces, objects of classes that implement these interfaces are treated in a special way by the JVM.
+	Serializable interface is a classic example for marker interface.
+	When any object that implements java.io.Serializable, the JVM knows that it is supposed to treat it in a special way.
+	Another example: javax.servlet.Servlet(marker but not a null interface)
+	All null interfaces are markers.
+	But all markers are not null interfaces.
+
+Q5. Give some examples for marker interfaces ?
+	Cloneable interface : Cloneable interface is present in java. lang package. ...
+	Serializable interface : Serializable interface is present in java.io package. ...
+	Remote interface : Remote interface is present in java.
+		Example1:
+	Consider the following example, here we have a class with the name Student which implements the marking interface Cloneable.
+	In the main method we are trying to create an object of the Student class and clone it using the clone() method.
+		Example2
+	In the following java program, the class Student has two instance variables name and age where age is declared transient.
+	In another class named ExampleSerialize, we are trying to serialize and desterilize the Student object and display its instance variables.
+	Since the age is made invisible (transient) only the name-value is displayed.
+
+Q6. What is default method in interfaces ?
+	→ Java 8 allows default methods to be added to Interfaces with default implementation.
+	→ Implementing Classes need not implement default methods.
+		*Default methods are not abstract methods.(they are concrete methods)
+		*The logic provide in the default method is shared between all the implementers of the interfaces.
+	Default methods help with backward compatibility.
+	We can add new methods to Interfaces without breaking existing implementations.
+
+q7. Differences between interfaces and abstract class ?
+	Interfaces:
+	  -Has no concrete method(exception default methods)
+	  -Has no constructors
+	  -A class can implement multiple interfaces
+	  -Implementer class is instantiated, interface is not instantiated
+	  
+	  Abstract Class:
+	  -Has concrete method  
+	  -Has constructors
+	  -extend from one base class (or) one abstract class
+	  -child class is instantiated and then parent class is also instantiated
+
+q8. Should abstract classes have abstract methods ?
+	 Abstract class may or may not include abstract methods.
+	  It is not compulsory to have abstract method in an abstract class.
+
+q9. Is it possible to create objects for abstract classes ?
+	We cannot create objects of an abstract class. To implement features of an abstract class, we inherit subclasses from it and create objects of the subclass. A subclass must override all abstract methods of an abstract class.
+	   When an Object is created for sub class, first an Object for the parent class is created.The reference of the parent Object is available to the child through the super reference.
+	   By creating Objects for the sub class Object for the abstract class is also created.
+
+q10. Do abstract classes have constructors ?
+	Yes. Like any other classes in Java, abstract classes can have constructors
+	even when they are only called from their concrete subclasses.
+	Since an abstract class can have variables of all access modifiers,
+	they have to be initialized to default values, so constructor is necessary.
+	As you instantiate the child class, a constructor of an abstract class is invoked and variables are initialized.
+	
+Q11. If it is not possible to create an object for an abstract class, then why do they have constructor ?
+	we cannot create an object for an abstract class directly.
+	    we can create an object for the sub class which is concrete.
+		The constructor of the abstract class is invoked , before running the constructor of the sub class.
+		Hence we must have a constructor in the abstract classes
+	
+Q12. When to use interface ?
+	- Interfaces are used as abstractions of the implementing classes 
+	   - Interfaces are used as contracts, and also as markers
+       - Interface are also used for achieving multiple implementations
+	   - specify the behaviour of a particular data type, but not concerned about who implements its behaviour.
+	
+Q13. When to use abstract classes ?
+	If you want to provide a common, implemented functionality among all the implementations of the component.
+	Abstract classes will allow you to partially implement your class.
+	
+Q14. Can a classes only private constructor ?(check ScoreBoard.java in eclipse)
+	Yes but,we cannot access a private constructor from any other class. If all the constant methods are there in our class, 
+	we can use a private constructor. If all the methods are static then we can use a private constructor. 
+	We can use a public function to call the private constructor if an object is not initialized.
+	
+Q15. How to create object for classes with private constructors ?
+	We can declare a constructor private by using the private access specifier.
+	If a constructor is declared private, we are not able to create an object of the class. 
+	Instead, we can use this private constructor in Singleton Design Pattern
+	
+Q16. What is de-coupling ?
+	decoupling allows the separation of object interaction from classes and inheritance into distinct 
+	layers of abstraction used to polymorphic-ally decouple the encapsulation which is the practice of using re-usable 
+	code to prevent discrete code modules from interacting with each other.
+	
+Q17. What is cohesiveness between objects ?
+	cohesiveness refers to the degree to which the elements inside a module belong together. 
+	In one sense, it is a measure of the strength of relationship between the methods and data of a class and some 
+	unifying purpose or concept served by that class.
+	
+Q18. Explain "has-a" and "is-a" relationship between objects with examples ?
+	Is-A Relationship in Java
+		In Java, an Is-A relationship depends on inheritance. Further inheritance is of two types, class inheritance and interface inheritance. 
+		It is used for code reusability in Java. For example, a Potato is a vegetable, a Bus is a vehicle, a Bulb is an electronic device and so on.
+		One of the properties of inheritance is that inheritance is unidirectional in nature. Like we can say that a house is a building.
+		But not all buildings are houses. We can easily determine an Is-A relationship in Java.
+		When there is an extends or implement keyword in the class declaration in Java, then the specific class is said to be following the Is-A relationship.
+	Has-A Relationship in Java
+		In Java, a Has-A relationship is also known as composition. It is also used for code reusability in Java. 
+		In Java, a Has-A relationship simply means that an instance of one class has a reference to an instance of another class or an other
+		instance of the same class. For example, a car has an engine, a dog has a tail and so on. In Java, there is no such keyword that implements 
+		a Has-A relationship. But we mostly use new keywords to implement a Has-A relationship in Java.
+
+Q19. What do you mean by Single responsibilities Principle ?
+	The single-responsibility principle (SRP) is a computer-programming principle that states that every module,
+	class or function in a computer program should have responsibility over a single part of that program's functionality,
+	and it should encapsulate that part.
+	
+Q20. What is Dependency Injection(DI) / Inversion of control(IOC) ? 
+	Dependency injection is the method through which we can achieve inversion of control. 
+	In order for us to leave the control up to the framework or job we declare dependencies and the IOC 
+	container injects those dependencies in our class.
