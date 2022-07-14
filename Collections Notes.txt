@@ -1,0 +1,280 @@
+1. What are the 2 most important differences between an Array, and a Collection
+	Array:-
+	  1. Array fixed in size if once we create a size then we can't modify size of array.
+	  2. Array can contain a homogeneous (similar ) type of data.
+	  3. We can't transfer the data in network becoz  every array is a non-serializable.
+	Collection:-
+	  1. Collection is not fixed in size so we can increase or decrease the size of the collection according to our requirement.
+	  2. Collection can contain heterogeneous datatype.
+	  3. We can transfer the data in network becoz all collection classes are serializable.
+  
+2. What are the differences between a List , and a Map
+    List:
+	* A List in java extends the collection interface and represent an sequenced or ordered group of elements.
+	* It can contain duplicate elements.
+	* It also defines some additional methods which it inherits from Collection interface.
+		 Note: 1)Elements in List can be inserted, updated, or retrieved by their position or index.
+		       2)Index or position value starts from 0.
+    Map:
+	* A map in java, not extends the Collection interface. 
+	* It represents a group of special elements or objects.
+	* Every map element or object contains key and value pair. 
+	* A map can’t contain duplicate keys and one key can refer to at most one value.
+	
+3. When to use a List
+	 * If get operations are higher than any other operation we can use the List.
+	 * If you need to access the elements frequently by using the index then we can use the list.
+
+4. When to use a Map instead of a List
+	* Use a map when you want your data structure to represent a mapping for keys to values.
+	* Use a list when you want your data to be stored in an arbitrary, ordered format.
+
+5. What is the important properties of a Set
+	1. Whoever class extends the Set interface can’t contain duplicate elements. It means a collection of the set can contain only unique values.
+	2. A set is unordered collection of objects. We can’t find the order of element.
+	3. Set interface has some default methods, those are automatically inherited in derived classes
+	4. It supports generic concepts, we can make a set as class specific.
+	
+6. How to iterate a Map
+	* There are generally five ways of iterating over a Map in Java. In this article, we will discuss all of them and also look at their advantages and disadvantages.
+	* First of all, we cannot iterate a Map directly using iterators, because Map are not Collection. 
+	* Also before going further, you must know a little-bit about Map.Entry<K, V> interface.
+	* Since all maps in Java implement Map interface, following techniques will work for any map implementation (HashMap, TreeMap, LinkedHashMap, Hashtable, etc.)
+	
+7. Are ArrayList Thread safe. If not how to make it Thread Safe
+	* ArrayList , on the other hand, is unsynchronized, making them, therefore, not thread safe.
+	* In order to get a synchronized list from an ArrayList, we use the synchronizedList(List <T>) method in Java.
+    * The Collections, synchronizedList(List <T>) method accepts the ArrayList as an argument and returns a thread safe list.
+
+
+8. Why should a class override the equals() and hashCode() methods if its objects are to be assigned to a HashMap, or HashSet
+	* You must override hashCode() in every class that overrides equals(). 
+	* Failure to do so will result in a violation of the general contract for Object.
+	* HashCode(), which will prevent your class from functioning properly in conjunction with all hash-based collections, including HashMap, HashSet, and Hashtable
+
+9. What is the purpose of Comparable interface
+	* Java Comparable interface is used to order the objects of the user-defined class. 
+	* This interface is found in java.lang package and contains only one method named compareTo(Object).
+	* It provides a single sorting sequence only, i.e., you can sort the elements on the basis of single data member only.
+	* For example, it may be rollno, name, age or anything else.
+	Example Code:
+	class Student implements Comparable<Student>{  
+	int rollno;  
+	String name;  
+	int age;  
+	Student(int rollno,String name,int age){  
+	this.rollno=rollno;  
+	this.name=name;  
+	this.age=age;  
+	}  
+	  
+	public int compareTo(Student st){  
+	if(age==st.age)  
+	return 0;  
+	else if(age>st.age)  
+	return 1;  
+	else  
+	return -1;  
+	}  
+	}  
+
+TestClass:	
+	import java.util.*;  
+	public class TestSort1{  
+	public static void main(String args[]){  
+	ArrayList<Student> al=new ArrayList<Student>();  
+	al.add(new Student(101,"Vijay",23));  
+	al.add(new Student(106,"Ajay",27));  
+	al.add(new Student(105,"Jai",21));  
+	  
+	Collections.sort(al);  
+	for(Student st:al){  
+	System.out.println(st.rollno+" "+st.name+" "+st.age);  
+	}  
+	}  
+	}  
+
+10. Comparable vs Comparator
+Comparable                                                                Comparator
+Comparable provides compareTo() method to sort elements in Java.        Comparator provides compare() method to sort elements in Java.
+Comparable interface is present in java.lang package.                    Comparator interface is present in java.util package.
+The logic of sorting must be in the same class whose object you are     The logic of sorting should be in separate class to write different sorting based on
+going to sort.                                                            different attributes of objects.                                                 
+                                                                    
+The class whose objects you want to sort must implement comparable         Class, whose objects you want to sort, do not need to implement a comparator interface.
+interface.    
+It provides single sorting sequences.                                    It provides multiple sorting sequences.
+This method can sort the data according to the natural sorting order.    This method sorts the data according to the customized sorting order.
+It affects the original class. i.e., actual class is altered.            It doesn’t affect the original class, i.e., actual class is not altered.
+Implemented frequently in the API by: Calendar, Wrapper classes, Date,     It is implemented to sort instances of third-party classes.
+and String.    
+All wrapper classes and String class implement comparable interface.    The only implemented classes of Comparator are Collator and RuleBasedColator.
+
+Example for Comparable:
+import java.io.*;
+import java.util.*;
+ 
+class Pair implements Comparable<Pair> {
+    String x;
+    int y;
+ 
+    public Pair(String x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+ 
+    public String toString()
+    {
+        return "(" + x + "," + y + ")";
+    }
+ 
+    @Override public int compareTo(Pair a)
+    {
+        // if the string are not equal
+        if (this.x.compareTo(a.x) != 0) {
+            return this.x.compareTo(a.x);
+        }
+        else {
+            // we compare int values
+            // if the strings are equal
+            return this.y - a.y;
+        }
+    }
+}
+ 
+public class GFG {
+    public static void main(String[] args)
+    {
+ 
+        int n = 4;
+        Pair arr[] = new Pair[n];
+ 
+        arr[0] = new Pair("abc", 3);
+        arr[1] = new Pair("a", 4);
+        arr[2] = new Pair("bc", 5);
+        arr[3] = new Pair("a", 2);
+ 
+        // Sorting the array
+        Arrays.sort(arr);
+ 
+        // printing the
+        // Pair array
+        print(arr);
+    }
+ 
+    public static void print(Pair[] arr)
+    {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+    }
+}
+
+Example for Comparator:
+
+class Student{  
+int rollno;  
+String name;  
+int age;  
+Student(int rollno,String name,int age){  
+this.rollno=rollno;  
+this.name=name;  
+this.age=age;  
+}  
+}  
+import java.util.*;  
+class AgeComparator implements Comparator{  
+public int compare(Object o1,Object o2){  
+Student s1=(Student)o1;  
+Student s2=(Student)o2;  
+  
+if(s1.age==s2.age)  
+return 0;  
+else if(s1.age>s2.age)  
+return 1;  
+else  
+return -1;  
+}  
+}  
+import java.util.*;  
+class NameComparator implements Comparator{  
+public int compare(Object o1,Object o2){  
+Student s1=(Student)o1;  
+Student s2=(Student)o2;  
+  
+return s1.name.compareTo(s2.name);  
+}  
+}  
+import java.util.*;  
+import java.io.*;  
+  
+class Simple{  
+public static void main(String args[]){  
+  
+ArrayList al=new ArrayList();  
+al.add(new Student(101,"Vijay",23));  
+al.add(new Student(106,"Ajay",27));  
+al.add(new Student(105,"Jai",21));  
+  
+System.out.println("Sorting by Name");  
+  
+Collections.sort(al,new NameComparator());  
+Iterator itr=al.iterator();  
+while(itr.hasNext()){  
+Student st=(Student)itr.next();  
+System.out.println(st.rollno+" "+st.name+" "+st.age);  
+}  
+  
+System.out.println("Sorting by age");  
+  
+Collections.sort(al,new AgeComparator());  
+Iterator itr2=al.iterator();  
+while(itr2.hasNext()){  
+Student st=(Student)itr2.next();  
+System.out.println(st.rollno+" "+st.name+" "+st.age);  
+}  
+}  
+}  
+
+Intermediate operations get elements one-by-one and process them. All intermediate operations are lazy, and, as a result, no operations will have any effect until the pipeline starts to work.
+
+Terminal operations mean the end of the stream lifecycle. Most importantly for our scenario, they initiate the work in the pipeline.	
+/*
+Intermediate methods:
+filter()
+map()
+sorted()
+limit()
+
+Assignment:
+1) distinct()
+
+2) peek()
+	peek() is an intermediate operation and we didn't apply a terminal operation to the pipeline. 
+Example:
+	Stream.peek() with terminal operation
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+     
+List<Integer> newList = list.stream().peek(System.out::println).collect(Collectors.toList());
+System.out.println(newList);
+//list.stream().peek(System.out::println);
+	list.stream().forEach(System.out::println);
+
+3) skip()
+
+Terminal methods:
+forEach()
+toArray()
+toList()
+reduce()
+collect()
+min(), max()
+count()
+anyMatch()
+allMatch() 
+nonMatch()
+findFirst(),findAny()
+isPresent(),isEmpty
+*/
+

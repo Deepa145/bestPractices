@@ -1,4 +1,4 @@
-package com.chainsys.bestpractices.abstractDemo;
+package com.chainsys.bestpractices.abstractdemo;
 
 public class TestScoreBoard {
 	public static void main(String args[])

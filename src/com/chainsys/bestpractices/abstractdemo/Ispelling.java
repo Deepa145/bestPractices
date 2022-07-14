@@ -1,4 +1,4 @@
-package com.chainsys.bestpractices.abstractDemo;
+package com.chainsys.bestpractices.abstractdemo;
 
 public interface Ispelling {
 void spellCheck(String word); // must be implemented by all languages
